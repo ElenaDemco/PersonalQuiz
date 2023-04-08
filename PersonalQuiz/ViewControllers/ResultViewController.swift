@@ -16,6 +16,8 @@ final class ResultViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.hidesBackButton = true
+        getResultTitle()
+        getResultDefinition()
     }
     
     var answers: [Answer]!
@@ -33,17 +35,16 @@ final class ResultViewController: UIViewController {
         let frequentAnimals = animalCounts.filter { $0.value == animalCounts.values.max() }.keys
         return frequentAnimals.first
     }
-    func getResultTitle() -> String {
-        if let animal = answers.first?.animal {
-            resultTitle.text = "Вы - \(String(animal.rawValue))"
+    
+    func getResultTitle() {
+        if let animal = calculatedAnswers(from: answers) {
+            return resultTitle.text = "Вы - \(String(animal.rawValue))"
         }
-        return ""
     }
     
-    func getResultDefinition() -> String {
-        if let animal = answers.first?.animal {
-            resultDefinition.text = animal.definition
+    func getResultDefinition() {
+        if let animal = calculatedAnswers(from: answers) {
+            return resultDefinition.text = animal.definition
         }
-        return ""
     }
 }
