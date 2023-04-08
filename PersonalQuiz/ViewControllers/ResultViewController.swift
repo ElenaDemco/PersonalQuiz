@@ -9,42 +9,40 @@ import UIKit
 
 final class ResultViewController: UIViewController {
     
-    @IBOutlet var resultTitle: UILabel!
+    // MARK: - IBOutlets
     
+    @IBOutlet var resultTitle: UILabel!
     @IBOutlet var resultDefinition: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.hidesBackButton = true
-        getResultTitle()
-        getResultDefinition()
+        
+        getResult(from: calculatedAnswers(from: answers))
     }
+    // MARK: - Properties
     
     var answers: [Answer]!
-    var animalDefinition = Animal.cat
+    private let animalDefinition = Animal.cat
+    
+    // MARK: - IB Action
     
     @IBAction func doneButtonPressed(_ sender: UIBarButtonItem) {
         dismiss(animated: true)
     }
     
+    // MARK: - Private Methods
+    
     private func calculatedAnswers(from answers: [Answer]) -> Animal? {
         let animalCounts = answers.reduce(into: [:]) { counts, answer in
             counts[answer.animal, default: 0] += 1
         }
-        
         let frequentAnimals = animalCounts.filter { $0.value == animalCounts.values.max() }.keys
         return frequentAnimals.first
     }
     
-    func getResultTitle() {
-        if let animal = calculatedAnswers(from: answers) {
-            return resultTitle.text = "Вы - \(String(animal.rawValue))"
-        }
-    }
-    
-    func getResultDefinition() {
-        if let animal = calculatedAnswers(from: answers) {
-            return resultDefinition.text = animal.definition
-        }
+    private func getResult(from animal: Animal?) {
+        resultTitle.text = "Вы - \(animal?.rawValue ?? "🐱")"
+        resultDefinition.text = animal?.definition
     }
 }
