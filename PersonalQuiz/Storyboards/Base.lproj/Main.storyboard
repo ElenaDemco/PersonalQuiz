@@ -330,6 +330,10 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="resultDescription" destination="JWd-aX-Vj8" id="rRq-E7-9DZ"/>
+                        <outlet property="resultTitle" destination="7HZ-kD-hK7" id="tWN-vd-JOy"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="G1v-Tj-vne" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
