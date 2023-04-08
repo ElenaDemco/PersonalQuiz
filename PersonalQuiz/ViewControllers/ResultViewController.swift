@@ -20,9 +20,12 @@ final class ResultViewController: UIViewController {
         
         getResult(from: calculatedAnswers(from: answers))
     }
-    // MARK: - Properties
+    // MARK: - Public Properties
     
     var answers: [Answer]!
+    
+    // MARK: - Private Properties
+    
     private let animalDefinition = Animal.cat
     
     // MARK: - IB Action
