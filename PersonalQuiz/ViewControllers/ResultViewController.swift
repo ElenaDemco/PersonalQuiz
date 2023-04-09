@@ -40,8 +40,7 @@ final class ResultViewController: UIViewController {
         let animalCounts = answers.reduce(into: [:]) { counts, answer in
             counts[answer.animal, default: 0] += 1
         }
-        let frequentAnimals = animalCounts.filter { $0.value == animalCounts.values.max() }.keys
-        return frequentAnimals.first
+        return animalCounts.max { $0.value < $1.value }?.key
     }
     
     private func getResult(from animal: Animal?) {
