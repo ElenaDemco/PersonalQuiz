@@ -24,10 +24,6 @@ final class ResultViewController: UIViewController {
     
     var answers: [Answer]!
     
-    // MARK: - Private Properties
-    
-    private let animalDefinition = Animal.cat
-    
     // MARK: - IB Action
     
     @IBAction func doneButtonPressed(_ sender: UIBarButtonItem) {
