@@ -33,10 +33,9 @@ final class ResultViewController: UIViewController {
     // MARK: - Private Methods
     
     private func calculatedAnswers(from answers: [Answer]) -> Animal? {
-        let animalCounts = answers.reduce(into: [:]) { counts, answer in
+        return answers.reduce(into: [:]) { counts, answer in
             counts[answer.animal, default: 0] += 1
-        }
-        return animalCounts.max { $0.value < $1.value }?.key
+        }.max(by: { $0.value < $1.value })?.key
     }
     
     private func getResult(from animal: Animal?) {
